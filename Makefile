@@ -21,30 +21,30 @@ bash:
 # create Cluster
 create: inventory/${clName}/group_vars
 	ansible-playbook -i inventory/${clName}/inventory.ini --private-key inventory/${clName}/ssh-key \
-	--become --become-user=root \
+	--become --become-user=root -v \
 	cluster.yml
 
 # add node to Cluster
 addNode:
 	ansible-playbook -i inventory/${clName}/inventory.ini --private-key inventory/${clName}/ssh-key \
-	--become --become-user=root \
+	--become --become-user=root -v \
 	scale.yml
 
 # remove node to Cluster
 rmNode:
 	ansible-playbook -i inventory/${clName}/inventory.ini --private-key inventory/${clName}/ssh-key \
-	--become --become-user=root \
+	--become --become-user=root -v \
 	remove-node.yml --extra-vars "node=${node}"
 
 # delete Cluster
 purge:
 	ansible-playbook -i inventory/${clName}/inventory.ini --private-key inventory/${clName}/ssh-key \
-	--become --become-user=root \
+	--become --become-user=root -v \
 	reset.yml
 
 upgrade:
 	ansible-playbook -i inventory/${clName}/inventory.ini --private-key inventory/${clName}/ssh-key \
-	--become --become-user=root \
+	--become --become-user=root -v \
 	upgrade-cluster.yml
 
 inventory/${clName}/group_vars:
