@@ -8,7 +8,7 @@ RUN apt update; apt install -y vim bash-completion git make screen; \
 ARG ver=v2.28.1
 WORKDIR /opt/kubespray
 RUN git clone https://github.com/kubernetes-sigs/kubespray.git  .; \
-    git checkout ${b} -b ${b}; \
+    git checkout ${ver} -b ${ver}; \
     pip install -r requirements.txt
 
 # export kubeconfig.yaml into ops node.

@@ -49,5 +49,5 @@ upgrade:
 
 inventory/${clName}/group_vars:
 	@echo "########## needs inventry files...########## "
-	cp -pr invventory/${baseCluster}/group_vars inventory/${clName}/
+	cp -pr inventory/${baseCluster}/group_vars inventory/${clName}/
 	@echo "########## files copied.  ########## "
