@@ -3,7 +3,7 @@ dDir=${wDir}/inventory
 clName=mine
 baseCluster=sample
 
-v    ?=v2.28.1
+v    ?=v2.29.1
 img  ?=itaru2622/kubespray:${v}-trixie
 base ?=python:3.13-trixie
 
