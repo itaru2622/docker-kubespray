@@ -5,7 +5,7 @@ ARG base=python:3.13-trixie
 RUN apt update; apt install -y vim bash-completion git make screen; \
     echo "set mouse-=a" > /root/.vimrc
 
-ARG ver=v2.28.1
+ARG ver=v2.29.1
 WORKDIR /opt/kubespray
 RUN git clone https://github.com/kubernetes-sigs/kubespray.git  .; \
     git checkout ${ver} -b ${ver}; \
