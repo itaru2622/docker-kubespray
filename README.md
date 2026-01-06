@@ -22,3 +22,37 @@ vm00
 [kube_node]
 vm00
 ```
+
+## Quick Start (simplest)
+
+```bash
+# configuration:
+#  1) locate inventory.ini        into ./inventory folder (copy above sample as ./inventory/inventory.ini)
+#  2) locate ssh private key      into ./inventory/ssh-key
+#  3) optionally, configure parameters in ./inventory/group_vars folder based on https://github.com/kubernetes-sigs/kubespray/tree/master/inventory/sample/group_vars
+
+# ----------------
+# start container and enter into bash.
+make bash
+
+# ----------------
+# create cluster
+make cluster
+
+# ----------------
+# add Node to cluster
+# 1) add nodes in ./inventory/inventory.ini
+# 2) execute ops by below command.
+make addNode
+
+# ----------------
+# remove Node from cluster
+# 1) execute ops by below command.
+# 2) optionaly: delete coresponding node from ./inventory/inventory.ini
+make rmNode node=vm01
+
+# ----------------
+# purge cluster
+make purge
+
+```
