@@ -37,7 +37,7 @@ make bash
 
 # ----------------
 # create cluster
-make cluster
+make create
 
 # ----------------
 # add Node to cluster
