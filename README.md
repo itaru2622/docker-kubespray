@@ -54,7 +54,7 @@ make addNode
 # ----------------
 # remove Node from cluster
 # 1) execute ops by below command.
-# 2) optionaly: delete coresponding node from ./inventory/inventory.ini
+# 2) optionaly: delete corresponding node from ./inventory/inventory.ini
 make rmNode node=vm01
 
 # ----------------
