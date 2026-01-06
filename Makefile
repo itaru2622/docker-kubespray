@@ -19,7 +19,9 @@ bash:
 # ops in container
 #
 # create Cluster
-create: inventory/${clName}/group_vars
+#   be sure: required files for deployment configured: inventory.ini and ssh-key
+#
+create: inventory/${clName}/group_vars    inventory/${clName}/inventory.ini    inventory/${clName}/ssh-key
 	ansible-playbook -i inventory/${clName}/inventory.ini --private-key inventory/${clName}/ssh-key \
 	--become --become-user=root -v \
 	cluster.yml
