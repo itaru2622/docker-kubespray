@@ -17,7 +17,7 @@
 
 ```
 [all]
-vm00 ansible_host=192.168.1.90    ip=192.168.1.90    etcd_member_name=etcd1     ansible_user=itaru2622
+vm00   ansible_host=192.168.1.90    ip=192.168.1.90    ansible_user=itaru2622     etcd_member_name=etcd1
 
 [kube_control_plane]
 vm00
