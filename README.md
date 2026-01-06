@@ -7,6 +7,12 @@
 - https://qiita.com/irumaru/items/76c6a083e04a4ed6a119
 
 
+## Requirements on target nodes to be setup with kubespray
+
+- required softwares: gpg, openssh-server
+- account to ssh login with ssh-key (private-key).
+
+
 ## sample inventory.ini:
 
 ```
