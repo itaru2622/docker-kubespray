@@ -6,6 +6,17 @@ name: Docker Build & Publish
 # documentation.
 
 on:
+  push:
+    paths-ignore:
+    - '**.md'
+    branches: [ master ]
+    tags: [ 'v*.*.*' ]
+  pull_request:
+    branches: [ master ]
+    paths-ignore:
+    - '**.md'
+  schedule:
+    - cron: '00 20 * * 0-5'
   workflow_dispatch:
 
 env:
@@ -30,6 +41,14 @@ jobs:
       - name: adjust image name from  ${{ github.repository }}
         run: |
            echo IMAGE_NAME=${{ env.IMAGE_NAME }} | sed 's/docker-//' >> $GITHUB_ENV
+
+      - name: resolve latest release version if not specified
+        run: |
+           if [ -z "${{ env.KUBESPRAY_VER }}" ]; then
+             LATEST_VER=$(curl -s https://api.github.com/repos/kubernetes-sigs/kubespray/releases/latest | jq -r .tag_name)
+             echo "KUBESPRAY_VER=${LATEST_VER}" >> $GITHUB_ENV
+           fi
+
       - name: Checkout repository
         uses: actions/checkout@v5
 
