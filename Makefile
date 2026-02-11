@@ -3,8 +3,10 @@ dDir=${wDir}/inventory
 clName=mine
 baseCluster=sample
 
-v    ?=v2.29.1
-img  ?=itaru2622/kubespray:${v}-trixie
+#-v  ?=v2.29.1
+# resolve latest version with API to keep following up latest via CI.
+v    ?=$(shell curl -L https://api.github.com/repos/kubernetes-sigs/kubespray/releases/latest | jq -r .tag_name)
+img  ?=itaru2622/kubespray:trixie
 base ?=python:3.13-trixie
 
 build:
