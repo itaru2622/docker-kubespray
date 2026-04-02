@@ -1,6 +1,6 @@
-ARG base=python:3.13-trixie
+ARG base=python:3.14-trixie
 FROM ${base}
-ARG base=python:3.13-trixie
+ARG base=python:3.14-trixie
 
 RUN apt update; apt install -y vim bash-completion git make screen; \
     echo "set mouse-=a" > /root/.vimrc
