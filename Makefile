@@ -8,7 +8,7 @@ baseCluster=sample
 v    ?=$(shell curl -L https://api.github.com/repos/kubernetes-sigs/kubespray/releases/latest | jq -r .tag_name)
 vNum ?=$(shell echo $v | sed 's/^v//')
 img  ?=itaru2622/kubespray:${vNum}
-base ?=python:3.13-trixie
+base ?=python:3.14-trixie
 
 
 build:
