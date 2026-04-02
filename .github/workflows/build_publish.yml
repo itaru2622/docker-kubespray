@@ -45,9 +45,12 @@ jobs:
       - name: resolve latest release version if not specified
         run: |
            if [ -z "${{ env.KUBESPRAY_VER }}" ]; then
-             LATEST_VER=$(curl -s https://api.github.com/repos/kubernetes-sigs/kubespray/releases/latest | jq -r .tag_name)
-             echo "KUBESPRAY_VER=${LATEST_VER}" >> $GITHUB_ENV
+             KUBESPRAY_VER=$(curl -s https://api.github.com/repos/kubernetes-sigs/kubespray/releases/latest | jq -r .tag_name)
+             echo "KUBESPRAY_VER=${KUBESPRAY_VER}" >> $GITHUB_ENV
            fi
+
+           KUBESPRAY_VNUM=$(echo ${KUBESPRAY_VER} | sed 's/^v//')
+           echo "KUBESPRAY_VNUM=${KUBESPRAY_VNUM}" >> $GITHUB_ENV
 
       - name: Checkout repository
         uses: actions/checkout@v5
@@ -78,8 +81,10 @@ jobs:
           tags: |
             type=semver,pattern={{raw}}
             type=schedule,pattern=${{env.TAG_LATEST}}
+            type=schedule,pattern=${{env.KUBESPRAY_VNUM}}
             type=ref,event=branch,enable=${{ !endsWith(github.ref, 'refs/heads/master') }}
             type=raw,value=${{env.TAG_LATEST}},enable=${{ endsWith(github.ref, 'refs/heads/master') }}
+            type=raw,value=${{env.KUBESPRAY_VNUM}},enable=${{ endsWith(github.ref, 'refs/heads/master') }}
 
       # Build and push Docker image with Buildx (don't push on PR)
       # https://github.com/docker/build-push-action
